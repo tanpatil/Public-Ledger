@@ -1,0 +1,124 @@
+
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Ledger - Home</title>
+
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+        
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+        <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+        
+        <link rel="stylesheet" href="https://unpkg.com/carbon-components/css/carbon-components.min.css">
+        <srcipt src="https://unpkg.com/carbon-components/scripts/carbon-components.min.js"></srcipt>
+
+        <link href="https://fonts.googleapis.com/css?family=Raleway|Roboto&display=swap" rel="stylesheet">
+
+        <link rel="stylesheet" href="../../index.css">
+        
+    </head>
+
+    <body>
+        <div class="ui thin sidebar visible vertical menu">
+            <div class="item" style="font-size: 1.3rem; font-weight: bold;">Ledger v1</div>
+            <a class="item" href="/home" >Home</a>
+            <a class="item" href="/transaction">My Transactions</a>
+            <a class="item" href="/transaction" data-toggle="modal" data-target="#addTransactions">Add Transacton</a>
+            <a class="item" href="/pubmsgencservice" data-toggle="modal" data-target="#addpublicMessages">Add Encrypted Public Message</a>
+            <a class="item" href="/msgboard">Public Encrypted Message Board</a>
+            <br>
+            <a href="/logout" class="ui small inverted red button" style="margin-left: 4rem;">Logout</a>
+
+        </div>
+        
+        <div class="pusher">
+            <h1 class="titleTextPg">Home</h1>
+            <hr>
+            <div class="d-flex justify-content-center align-items-center">
+                <div class="container">
+                    <div class="jumbotron jumbotron-fluid">
+                        <h1><%= user.nickname %></h1>
+                        </div>               
+
+
+        <!-- Modal -->
+        <div class="modal fade" id="addTransactions" tabindex="-1" role="dialog" aria-labelledby="addTransactionsLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h5 class="modal-title" id="addTransactionsLabel">Add Transaction</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                </div>
+                <div class="modal-body">
+                    <form class="ui form" action="/transaction" method="POST" >
+                        <div class="field">
+                            <label>Payee</label>
+                            <input type="text" name="payee">
+                        </div>
+                        <div class="field">
+                            <label>Payer</label>
+                            <input type="text" name="payer">
+                        </div>
+                        <div class="field">
+                            <label>Description</label>
+                            <textarea rows="2" name="description"></textarea>
+                        </div>
+                        <div class="field">
+                            <label>Amount</label>
+                            <input type="text" name="Amount">
+                        </div>
+                        <div class="field">
+                            <label>Mode</label>
+                            <input type="text" name="mode">
+                        </div>
+                        <input type="submit">
+                    </form>  
+                </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+            </div>
+        </div>
+        <div class="modal fade" id="addpublicMessages" tabindex="-1" role="dialog" aria-labelledby="addpublicMessagesLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h5 class="modal-title" id="addpublicMessagesLabel">Add an Encrypted Message to the Message Board!</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                </div>
+                <div class="modal-body">
+                    <form class="ui form" action="/pubmsgencservice" method="POST" >
+                        <div class="field">
+                            <label>Message</label>
+                            <textarea rows="2" name="message" placeholder="The text you want to encrypt goes here!"></textarea>
+                        </div>
+                        <div class="field">
+                            <label>Sender</label>
+                            <input type="text" name="sender" placeholder="Make it easy for someone to search for this! It doesnt have to be your real name!">
+                        </div>
+                        <div class="field">
+                            <label>Password to Encrypt this text</label>
+                            <input type="password" name="password" placeholder="Someone can read this message only with this password">
+                        </div>
+                        <input type="submit">
+                    </form>  
+                </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+            </div>
+        </div>
+
+    </body>
+</html>

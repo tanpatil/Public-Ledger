@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link rel="stylesheet" href="../login.css">
+        
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+        
+    </head>
+
+    <body>
+
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container">
+                <a class="navbar-brand" href="/">Ledger v1</a>
+            </div>
+        </nav>
+
+        <div class="container d-flex justify-content-center">
+            <div class="card text-center">
+                <div class="card-header">
+                    Add a Transaction
+                </div>
+                <div class="card-body">
+                    <form action="/transaction" method="POST">
+                        <div class="form-group">
+                            <label>Payer</label>
+                            <input type="text" class="form-control" name="payer" placeholder="Who is paying?">
+                        </div>
+                        <div class="form-group">
+                          <label>Payee</label>
+                          <input type="text" class="form-control" name="payee" placeholder="Who is being paid?">
+                      </div>
+                      <div class="form-group">
+                        <label>Amount</label>
+                        <input type="text" class="form-control" name="Amount" placeholder="What is the amount?">
+                    </div>
+                     <div class="form-group">
+                        <label>Mode</label>
+                        <input type="text" class="form-control" name="mode" placeholder="What is the mode of payment?">
+                    </div>
+                        <button type="submit" class="btn btn-primary">Add Transaction (Unconfirmed)</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+<table class="table table-inverse">
+  <thead>
+    <tr>
+      <th>Payee</th>
+      <th>Payer</th>
+      <th>Amount</th>
+      <th>Mode of Payment</th>
+      <th>Description</th>
+
+    </tr>
+  </thead>
+
+  <tbody>
+    <% for(var i=0; i < data.length; i++) { %>
+   <tr>
+
+     <td><%= data[i].Payee %></td>
+     <td><%= data[i].Payer %></td>
+     <td><%= data[i].Amount %></td>
+     <td><%=data[i].mode %></td>
+     <td><%=data[i].description %></td>
+
+
+   </tr>
+<% } %>
+  </tbody>
+
+</table>
+    </body>
+</html>
+<!-- Learn how to make a card here -->
